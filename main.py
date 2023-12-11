@@ -1,3 +1,4 @@
+"""
 from os import environ
 import requests
 
@@ -25,3 +26,35 @@ res = requests.post(TRANSACTION_URL, headers={
 print(res.json())
 print("bum cyk cyk")
 print(669969)
+"""
+#This example uses Python 2.7 and the python-request library.
+
+from requests import Request, Session
+from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
+import json
+
+bitcoin_id = 1  # ID Bitcoina na CoinMarketCap
+
+bitcoin_url = f'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id={bitcoin_id}&convert=USD'
+
+url = 'https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+parameters = {
+  'start':'1',
+  'limit':'5000',
+  'convert':'USD'
+}
+headers = {
+  'Accepts': 'application/json',
+  'X-CMC_PRO_API_KEY': '1bee53f7-2d13-44e6-8344-45e04721a562',
+}
+
+session = Session()
+session.headers.update(headers)
+
+try:
+  response = session.get(bitcoin_url)
+  bitcoin_data = json.loads(response.text)
+  bitcoin_price = bitcoin_data['data'][str(bitcoin_id)]['quote']['USD']['price']
+  print(f'Aktualna cena Bitcoina w USD: {bitcoin_price}')
+except (ConnectionError, Timeout, TooManyRedirects) as e:
+  print(e)
