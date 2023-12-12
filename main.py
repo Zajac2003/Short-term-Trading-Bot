@@ -1,6 +1,7 @@
 from os import environ
 import requests
 import time
+import threading
 
 #amount from source wallet
 def buyBitcoin(amountInDollars):
@@ -88,6 +89,26 @@ def currentBitcoinExchangeRate():
         # W przypadku nieudanej odpowiedzi, wyświetl komunikat o błędzie
         print(f"Nieudany GET request. Status code: {response.status_code}")
 
-while(True):
-    print(currentBitcoinExchangeRate())
-    time.sleep(2)
+##wątek aktualizujący cenę bitcoina na dodanej liście. Działa na !oryginale!
+##Najnowsze rekordy na index 0, im wyzszy indeks tym starszy rekord
+def aktualizujListe(lista):
+    lock.acquire()
+    lista.append(currentBitcoinExchangeRate())
+    lock.release()
+
+    print(lista)
+    while(True):
+        element = currentBitcoinExchangeRate()
+        if element != lista[0]:
+            lock.acquire()
+            lista.insert(0, element)
+            lock.release()
+            print(lista)
+        time.sleep(5)
+
+lock = threading.Lock()
+
+lista = []
+thread1 = threading.Thread(target=aktualizujListe(lista))
+thread1.start()
+
