@@ -58,11 +58,21 @@ def sellBitcoin(amount):
 
     print(res.json())
 
-operacja = int(input())
-if operacja == 1:
-    print("buying")
-    buyBitcoin(input())
+def menu():
+    operacja = int(input())
+    if operacja == 1:
+        print("buying")
+        buyBitcoin(input())
+        print("Bought succesfully")
 
-elif operacja == 2:
-    print("selling")
-    sellBitcoin(input())
+    elif operacja == 2:
+        print("selling")
+        sellBitcoin(input())
+        print("Sold succesfully")
+
+
+
+
+records = [20];
+
+print(type(records))
