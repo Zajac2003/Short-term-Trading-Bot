@@ -104,6 +104,11 @@ def aktualizujListe(lista):
             lista.insert(0, element)
             lock.release()
             print(lista)
+        if len(lista) > 200:
+            lock.acquire()
+            lista = lista[:-100]
+            lock.release()
+            print("dlugosc listy to ", len(lista))
         time.sleep(5)
 
 lock = threading.Lock()
