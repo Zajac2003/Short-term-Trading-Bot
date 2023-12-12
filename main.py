@@ -32,6 +32,7 @@ def buyBitcoin(amountInDollars):
 
     print(res.json())
 
+#amount
 def sellBitcoin(amountInBitcoins):
 
     API_KEY = 'AIzaSyBOEvN4OzAePlFp1fSRKWJlioA9r2WPZHw'
@@ -60,6 +61,7 @@ def sellBitcoin(amountInBitcoins):
 
     print(res.json())
 
+##wyswietla menu dzialan, bylo potrzebne do testow, teraz rzadko sie przyda
 def menu():
     operacja = int(input())
     if operacja == 1:
@@ -72,6 +74,7 @@ def menu():
         sellBitcoin(input())
         print("Sold succesfully")
 
+#returns current bitcoin value in USD (float)
 def currentBitcoinExchangeRate():
     url = "https://api.coinbase.com/v2/exchange-rates?currency=BTC"
 
@@ -84,7 +87,7 @@ def currentBitcoinExchangeRate():
         data = response.json()
         kurs = data['data']['rates']['BUSD']
         kurs = float(kurs)
-        return kurs
+        return kurs + 120
     else:
         # W przypadku nieudanej odpowiedzi, wyświetl komunikat o błędzie
         print(f"Nieudany GET request. Status code: {response.status_code}")
@@ -111,9 +114,34 @@ def aktualizujListe(lista):
             print("dlugosc listy to ", len(lista))
         time.sleep(5)
 
-lock = threading.Lock()
+#zwraca wartość średnią z n pierwszych rekordów
+#n = wartość którą podajesz
+def srednia(ogranicznik):
+    ogranicznik = int(ogranicznik)
+    if len(lista) >= ogranicznik:
+        srednia = 0
+        for i in range(0,ogranicznik):
+            srednia += float(lista[i])
+        return srednia/ogranicznik
+
+def tradingBot():
+    while(len(lista) < 16):
+        time.sleep(3)
+
+    while(True):
+        twardaSrednia = srednia(4)
+        miekkaSrednia = srednia(15)
+        uniwersalnaSrednia = twardaSrednia*0.7 + miekkaSrednia*0.3
+        print(twardaSrednia)
+        print(miekkaSrednia)
+        print(uniwersalnaSrednia)
+        time.sleep(2)
 
 lista = []
-thread1 = threading.Thread(target=aktualizujListe(lista))
-thread1.start()
+lock = threading.Lock()
 
+thread1 = threading.Thread(target=aktualizujListe, args=(lista,))
+thread2 = threading.Thread(target=tradingBot)
+
+thread1.start()
+thread2.start()
