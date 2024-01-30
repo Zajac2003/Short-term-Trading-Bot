@@ -3,6 +3,7 @@ Tworzy tylko krótkoterminowe transakcje.
 Korzysta z aktualnych kursów coinBase.com
 
 Działa na dwóch głównych wątkach:
+-Czeka na zebranie 16-stu ostatnich kursów, zanim zacznie działać
 -Pobieranie i aktualizowanie listy z kursami
 -Tworzenie transakcji, obsługiwanie sprzedaży i kupna, analizowanie sytuacji
 
@@ -25,9 +26,10 @@ Bajery i zabezpieczenia:
 Zapisuje zakończone transakcje do pliku .txt.
 
 Projekt stworzony na potrzeby hackathonu CryptoBrawl. Pobiera kursy ze strony coinBase i wykonuje transakcje na platformie the-brawl.eu
-Dane między dwoma platformami zbyt różniły się w czasie, żeby bot mógł działać poprawnie :C
-(ta platforma, na której się wykonywało transakcje nie posiadała udostępnionego API do pobierania cen)
+Dane między dwoma platformami zbyt różniły się w czasie, żeby bot mógł rozwinąć skrzydła :C
+(ta platforma, na której się wykonywało transakcje nie posiadała udostępnionego API do pobierania cen. coinBase był polecony przez organizatora)
 Natomiast uważam że ma bardzo dobry model, dobrze jest zabezpieczony, myślę że z kilkoma modyfikacjami mógłby faktycznie działać (największym problemem są prowizje).
+Na spokojnie go zostawiałem żeby działał w tle bez nadzoru i bez obaw że mi sprzeda cały portfel.
 
 
 ![image](https://github.com/Zajac2003/Trading-Bot/assets/110545626/100a7d8d-50c9-453f-b7c7-df7e62e560bd)
