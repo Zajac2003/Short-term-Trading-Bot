@@ -30,7 +30,7 @@ Dane między dwoma platformami zbyt różniły się w czasie, żeby bot mógł r
 Natomiast uważam że ma bardzo dobry model, dobrze jest zabezpieczony, myślę że z kilkoma modyfikacjami mógłby faktycznie działać (największym problemem są prowizje).
 Na spokojnie go zostawiałem żeby działał w tle bez nadzoru i bez obaw że mi sprzeda cały portfel.
 
-
+(Wszystkie dane były prawdziwe, tak samo profity)
 ![image](https://github.com/Zajac2003/Trading-Bot/assets/110545626/100a7d8d-50c9-453f-b7c7-df7e62e560bd)
 
 
