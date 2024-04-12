@@ -3,7 +3,6 @@ Tworzy tylko krótkoterminowe transakcje.
 Korzysta z aktualnych kursów coinBase.com
 
 Działa na dwóch głównych wątkach:
--Czeka na zebranie 16-stu ostatnich kursów, zanim zacznie działać
 -Pobieranie i aktualizowanie listy z kursami
 -Tworzenie transakcji, obsługiwanie sprzedaży i kupna, analizowanie sytuacji
 
